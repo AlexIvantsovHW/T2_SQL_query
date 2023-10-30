@@ -29,7 +29,7 @@ SELECT
   rs.sub_name,
   rs.sub_id,
   rs.sub_level,
-  rs.colls_count
+  COUNT(rs.sub_id) OVER (PARTITION BY rs.sub_name) AS colls_count
 FROM
   dbo.collaborators c
   JOIN rs ON c.subdivision_id = rs.sub_id
